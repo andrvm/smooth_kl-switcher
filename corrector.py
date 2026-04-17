@@ -1,7 +1,7 @@
 # Standard Russian QWERTY layout: physical key -> character produced
 # Lowercase mappings per layout
 
-_KEY_EN = {
+KEY_EN = {
     'KEY_Q': 'q', 'KEY_W': 'w', 'KEY_E': 'e', 'KEY_R': 'r', 'KEY_T': 't',
     'KEY_Y': 'y', 'KEY_U': 'u', 'KEY_I': 'i', 'KEY_O': 'o', 'KEY_P': 'p',
     'KEY_A': 'a', 'KEY_S': 's', 'KEY_D': 'd', 'KEY_F': 'f', 'KEY_G': 'g',
@@ -13,7 +13,7 @@ _KEY_EN = {
     'KEY_COMMA': ',', 'KEY_DOT': '.',
 }
 
-_KEY_RU = {
+KEY_RU = {
     'KEY_Q': 'й', 'KEY_W': 'ц', 'KEY_E': 'у', 'KEY_R': 'к', 'KEY_T': 'е',
     'KEY_Y': 'н', 'KEY_U': 'г', 'KEY_I': 'ш', 'KEY_O': 'щ', 'KEY_P': 'з',
     'KEY_A': 'ф', 'KEY_S': 'ы', 'KEY_D': 'в', 'KEY_F': 'а', 'KEY_G': 'п',
@@ -29,9 +29,9 @@ _KEY_RU = {
 EN_TO_RU: dict[str, str] = {}
 RU_TO_EN: dict[str, str] = {}
 
-for _k in _KEY_EN:
-    if _k in _KEY_RU:
-        _en_lo, _ru_lo = _KEY_EN[_k], _KEY_RU[_k]
+for _k in KEY_EN:
+    if _k in KEY_RU:
+        _en_lo, _ru_lo = KEY_EN[_k], KEY_RU[_k]
         EN_TO_RU[_en_lo] = _ru_lo
         EN_TO_RU[_en_lo.upper()] = _ru_lo.upper()
         RU_TO_EN[_ru_lo] = _en_lo

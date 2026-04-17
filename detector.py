@@ -107,6 +107,20 @@ def _looks_wrong_layout_en(word: str) -> bool:
     return False
 
 
+def _looks_valid_en(text: str) -> bool:
+    """Return True if text plausibly looks like English (not gibberish)."""
+    lower = text.lower()
+    if lower in COMMON_EN_WORDS:
+        return True
+    alpha = [c for c in lower if c.isalpha()]
+    if not alpha:
+        return False
+    vowels = set('aeiou')
+    vowel_count = sum(1 for c in alpha if c in vowels)
+    consonant_ratio = 1.0 - vowel_count / len(alpha)
+    return consonant_ratio < 0.8
+
+
 def check_word(word: str, current_layout: str) -> tuple[str, str] | None:
     """
     Analyze a typed word and return (target_layout, corrected_text) if a
@@ -133,7 +147,7 @@ def check_word(word: str, current_layout: str) -> tuple[str, str] | None:
     elif scr == 'ru' and current_layout == 'en':
         # Cyrillic typed but layout is now EN — user switched away after typing RU
         corrected = convert_ru_to_en(word)
-        if corrected.lower() in COMMON_EN_WORDS or len(corrected) >= 4:
+        if _looks_valid_en(corrected):
             return ('en', corrected)
 
     return None

@@ -1,3 +1,4 @@
 pynput
 PyQt6
 pyinstaller
+evdev
